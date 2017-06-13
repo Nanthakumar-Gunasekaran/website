@@ -10,7 +10,7 @@ class Account(models.Model):
     user_last_name = models.CharField(max_length=100)
 
     def get_absolute_url(self):
-        return reverse('securityapp:index', kwargs={'pk': self.pk})
+        return reverse('securityapp:account_details', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.account_name

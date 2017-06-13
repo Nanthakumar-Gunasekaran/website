@@ -1,5 +1,5 @@
 {% extends 'securityapp/base.html' %}
-{% block title %}Create an account{% endblock %}
+{% block title %}Register{% endblock %}
 
 
 {% block body %}
@@ -9,6 +9,7 @@
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <h3>Register </h3>
                     <form class="form-horizontal" action="" method="post">
                         {% csrf_token %}
                         {% include 'securityapp/form-template.html' %}
@@ -16,6 +17,7 @@
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
+
                         </div>
 
                     </form>

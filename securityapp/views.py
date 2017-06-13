@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from django.contrib.messages.views import SuccessMessageMixin
+from .forms import UserForm
 
 
 class IndexView(generic.ListView):
@@ -39,7 +40,40 @@ class AccountDelete(DeleteView):
 
 def logout_view(request):
     logout(request)
-    return redirect('')
+    return redirect('login')
+
+
+class UserFormView(View):
+    form_class = UserForm
+    template_name = 'registration/registration_form.html'
+
+    # Get new form to create a user(sign up)
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    # Sign in
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            user = form.save(commit=False)
+
+            # cleaned data
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
+
+            # return user objects if credentials are true
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('securityapp:index')
+
+        return render(request, self.template_name, {'form': form})
 
 
 

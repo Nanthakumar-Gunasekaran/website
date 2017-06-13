@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{%static 'securityapp/style.css'%}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -47,7 +47,7 @@
     </nav>
   	<ul class="nav nav-tabs nav-justified"  id="homenav">
     <li ><a href="#">Home</a></li>
-    <li class="Active" ><a href="#">Accounts</a></li>
+    <li class="Active" ><a href="{% url 'securityapp:index' %}">Accounts</a></li>
     <li ><a href="#">Users</a></li>
     <li ><a href="#">System Status</a></li>
     <li><a href="#">Global</a></li>
