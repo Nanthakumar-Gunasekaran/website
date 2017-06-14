@@ -11,28 +11,27 @@
       </ul>
     </div>
     <div class="col-sm-10" style="background:white">
-    <h2>This is the {{account.account_name}}'s details</h2>
 
     {% if error_message %}
     <p><strong>{{error_message}}</strong></p>
     {% endif %}
 
-        <h3>{{account.account_name}}<br>
-        {{account.email}}<br>
-        {{account.phone_number}}<br>
-        {{account.user_first_name}}<br>
-        {{account.user_last_name}}<br>
+        <h3>Account name    : {{account.account_name}}</h3><br>
+        <h3>Email           : {{account.email}}</h3><br>
+        <h3>Phone number    : {{account.phone_number}}</h3><br>
+        <h3>User First name : {{account.user_first_name}}</h3><br>
+        <h3>User First name : {{account.user_last_name}}</h3><br>
 
 
 
         <form action="{% url 'securityapp:account_update' account.id %}" method="get">
         {% csrf_token %}
-        <button type="submit" class="btn btn-success btn-sm pull-right">Update</button>
+        <button type="submit" class="btn btn-success pull-right" id="btn_update" style="padding:10px;">Update</button>
         </form>
 
      <form action="{% url 'securityapp:account_delete' account.id %}" method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger btn-sm pull-left">&nbsp; Delete account</button>
+        <button type="submit" class="btn btn-danger btn-sm pull-left" id="btn_delete" style="padding:10px;">&nbsp; Delete account</button>
      </form>
         </div>
 {% endblock %}

@@ -6,10 +6,18 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from .forms import UserForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class IndexView(generic.ListView):
+#@login_required(login_url="login/")
+#def home(request):
+    #return render(request, "securityapp/accounts_list.html")
+
+
+class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'securityapp/accounts_list.html'
 
     def get_queryset(self):
@@ -43,9 +51,10 @@ def logout_view(request):
     return redirect('login')
 
 
-class UserFormView(View):
+class UserFormView(SuccessMessageMixin, View):
     form_class = UserForm
     template_name = 'registration/registration_form.html'
+    success_message = "Created successfully"
 
     # Get new form to create a user(sign up)
     def get(self, request):
@@ -71,7 +80,7 @@ class UserFormView(View):
 
             if user is not None:
                 login(request, user)
-                return redirect('securityapp:index')
+                return render(request, 'securityapp/newuser_welcome.html')
 
         return render(request, self.template_name, {'form': form})
 

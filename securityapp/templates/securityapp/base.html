@@ -31,7 +31,7 @@
             	<ul class="nav navbar-nav navbar-right">
                     <li class="">
                         <a href="{% url 'securityapp:index'%}">
-                            <span class="glyphicon glyphicon-off"></span>&nbsp Hi Admin
+                            <span class="glyphicon glyphicon-off"></span>&nbsp Hi {{request.user.username}}
                         </a>
                     </li>
 

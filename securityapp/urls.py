@@ -7,9 +7,9 @@ app_name = 'securityapp'
 urlpatterns = [
 
     # home dashboard
-    url(r'^home/$', views.IndexView.as_view, name='home'),
+    url(r'^$', views.IndexView.as_view(), name='home'),
 
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^accounts/$', views.IndexView.as_view(), name='index'),
 
     # securityapp/<account_id>/
     url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='account_details'),
