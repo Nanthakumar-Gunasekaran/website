@@ -53,10 +53,6 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'website.urls'
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-    BASE_DIR + '/templates/',   
-)
 
 TEMPLATES = [
     {
