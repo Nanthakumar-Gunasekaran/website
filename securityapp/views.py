@@ -8,6 +8,7 @@ from django.views.generic import View
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from .forms import UserForm
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -21,7 +22,17 @@ class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'securityapp/accounts_list.html'
 
     def get_queryset(self):
-        return Account.objects.all()
+        queryset_list =  Account.objects.all()
+
+        query = self.request.GET.get('q')
+        if query:
+            queryset_list = queryset_list.filter(
+                Q(account_name__icontains=query) |
+                Q(email__icontains=query) |
+                Q(user_first_name=query) |
+                Q(user_first_name=query)
+            ).distinct()
+        return queryset_list
 
 
 class DetailView(generic.DetailView):

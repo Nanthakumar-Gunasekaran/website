@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to School of thoughts</title>
-</head>
-<body>
-<h1>Welcome to School of Thoughts</h1>
-<a href="{% url 'securityapp:index' %}">Explore</a>
-</body>
-</html>
+{% extends 'securityapp/base.html'%}
+
+{% block body %}
+<h1 style="text-align:center">Welcome to School of Thoughts</h1>
+<a href="{% url 'securityapp:index' %}" style="margin:20px auto; text-align:center; display:block; width:120px;" role="button" class="btn btn-primary">Explore</a>
+{% endblock %}
