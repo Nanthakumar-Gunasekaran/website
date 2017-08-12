@@ -13,8 +13,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 #@login_required(login_url="login/")
-#def home(request):
-    #return render(request, "securityapp/accounts_list.html")
+def home(request):
+    return render(request, "securityapp/accounts_list.html")
 
 
 class IndexView(LoginRequiredMixin, generic.ListView):
